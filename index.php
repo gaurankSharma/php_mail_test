@@ -14,11 +14,17 @@ $subject = "Form submission";
 $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
 
 $headers = "From:" . $from;
-$headers2 = "From:" . $to;
+$headers = "Organization: some-one.com\r\n";
+$headers .= "MIME-Version:1.0"  ."\r\n";
+$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+$headers .= "X-Priority: 3\r\n";
+$headers .= "X-Mailer: PHP". phpversion() ."\r\n";
+$headers .= "From:admin@someone.com";
+
 
 $result = mail($to,$subject,$message,$headers);
 
-echo "Mail Sent. Thank you " . $first_name . $from . $last_name . $_POST['message'] . ", we will contact you shortly.";
+
 if( $result == true ){
 	echo "Mail Sent. Thank you " . $first_name . $from . $last_name . $_POST['message'] . ", we will contact you shortly.";
  }else{
