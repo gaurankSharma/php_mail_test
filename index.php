@@ -1,7 +1,8 @@
 <?php 
 if(isset($_POST['submit'])){
 // this is your Email address
-$to = "gaurank@cartoonmango.com";
+$to = "gaurank@cartoonmango.com"; 
+
 // this is the sender's Email address 
 $from = $_POST['email']; 
 
@@ -15,9 +16,14 @@ $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $
 $headers = "From:" . $from;
 $headers2 = "From:" . $to;
 
-mail($to,$subject,$message,$headers);
+$result = mail($to,$subject,$message,$headers);
 
 echo "Mail Sent. Thank you " . $first_name . $from . $last_name . $_POST['message'] . ", we will contact you shortly.";
+if( $result == true ){
+	echo "Mail Sent. Thank you " . $first_name . $from . $last_name . $_POST['message'] . ", we will contact you shortly.";
+ }else{
+	echo "Message could not be sent...";
+ }
 }
 ?>
 
